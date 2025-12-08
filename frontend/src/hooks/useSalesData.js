@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = "https://truestate-backend-0ate.onrender.com"; // change when deployed
+const API_URL = "https://truestate-backend-0ate.onrender.com/sales"; // change when deployed
 
 function useSalesData() {
   const [data, setData] = useState([]);
