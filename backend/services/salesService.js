@@ -72,9 +72,6 @@ exports.buildQuery = (queryParams) => {
   return mongoQuery;
 };
 
-// --------------------------------------
-// DATABASE QUERY + SORT + PAGINATION
-// --------------------------------------
 exports.getSalesData = async (queryParams, sort, skip, limit) => {
   const query = this.buildQuery(queryParams);
 

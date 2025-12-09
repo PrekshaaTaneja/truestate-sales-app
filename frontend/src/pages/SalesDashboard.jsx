@@ -66,6 +66,7 @@ function SalesDashboard() {
             if (type === "end") setEndDate(date);
           }}
         />
+
       </div>
 
       {/* STATS CARDS */}
@@ -78,7 +79,7 @@ function SalesDashboard() {
       </div>
 
       {/* SORT DROPDOWN */}
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-end mb-9 mt-[-70px]">
         <SortDropdown onSortChange={(val) => {
           setPage(1);
           setSortBy(val);

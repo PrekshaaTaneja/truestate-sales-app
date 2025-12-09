@@ -26,9 +26,6 @@ function useSalesData() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // -----------------------------
-  // BUILD QUERY STRING
-  // -----------------------------
   const buildQuery = () => {
     const params = new URLSearchParams();
 
@@ -55,12 +52,9 @@ function useSalesData() {
     return params.toString();
   };
 
-  // -----------------------------
-  // FETCH API DATA
-  // -----------------------------
  const fetchData = async () => {
   try {
-    setLoading(true);  // start loading
+    setLoading(true); 
 
     const queryString = buildQuery();
     const res = await axios.get(`${API_URL}?${queryString}`);

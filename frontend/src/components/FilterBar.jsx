@@ -1,98 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
+import MultiSelect from "./MultiSelect";
 
-function FilterBar({
+export default function FilterBar({
   onRegionChange,
   onGenderChange,
   onAgeChange,
   onCategoryChange,
   onTagsChange,
   onPaymentChange,
-  onDateChange
+  onDateChange,
 }) {
+  const [region, setRegion] = useState([]);
+  const [gender, setGender] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [payment, setPayment] = useState([]);
+
   return (
-    <div className="flex flex-wrap gap-3 bg-white p-4 rounded-lg shadow-sm border">
+    <div className="flex flex-wrap gap-3">
 
-      {/* Region */}
-      <select
-        className="border px-3 py-2 rounded-md"
-        onChange={(e) => onRegionChange(e.target.value)}
-      >
-        <option value="">Customer Region</option>
-        <option value="North">North</option>
-        <option value="South">South</option>
-        <option value="East">East</option>
-        <option value="West">West</option>
-      </select>
+      <MultiSelect
+        label="Customer Region"
+        options={["North", "South", "East", "West", "Central"]}
+        selected={region}
+        onChange={(val) => {
+          const arr = val ? val.split(",") : [];
+          setRegion(arr);
+          onRegionChange(val);
+        }}
+      />
 
-      {/* Gender */}
-      <select
-        className="border px-3 py-2 rounded-md"
-        onChange={(e) => onGenderChange(e.target.value)}
-      >
-        <option value="">Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
+      <MultiSelect
+        label="Gender"
+        options={["Male", "Female", "Other"]}
+        selected={gender}
+        onChange={(val) => {
+          const arr = val ? val.split(",") : [];
+          setGender(arr);
+          onGenderChange(val);
+        }}
+      />
 
-      {/* Age Range */}
+      <MultiSelect
+        label="Product Category"
+        options={["Clothing", "Beauty", "Electronics", "Sports", "Accessories"]}
+        selected={category}
+        onChange={(val) => {
+          const arr = val ? val.split(",") : [];
+          setCategory(arr);
+          onCategoryChange(val);
+        }}
+      />
+
+      <MultiSelect
+        label="Tags"
+        options={["fashion", "organic", "wireless", "home", "unisex", "smart"]}
+        selected={tags}
+        onChange={(val) => {
+          const arr = val ? val.split(",") : [];
+          setTags(arr);
+          onTagsChange(val);
+        }}
+      />
+
+      <MultiSelect
+        label="Payment Method"
+        options={["Cash", "Credit", "UPI", "Card"]}
+        selected={payment}
+        onChange={(val) => {
+          const arr = val ? val.split(",") : [];
+          setPayment(arr);
+          onPaymentChange(val);
+        }}
+      />
+
+      {/* AGE RANGE */}
       <select
-        className="border px-3 py-2 rounded-md"
         onChange={(e) => onAgeChange(e.target.value)}
+        className="border px-3 py-2 rounded text-sm min-w-[160px]"
       >
         <option value="">Age Range</option>
         <option value="18-25">18–25</option>
-        <option value="25-35">25–35</option>
-        <option value="35-50">35–50</option>
+        <option value="26-35">26–35</option>
+        <option value="36-50">36–50</option>
+        <option value="51-70">51–70</option>
       </select>
 
-      {/* Product Category */}
-      <select
-        className="border px-3 py-2 rounded-md"
-        onChange={(e) => onCategoryChange(e.target.value)}
-      >
-        <option value="">Product Category</option>
-        <option value="Clothing">Clothing</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Grocery">Grocery</option>
-      </select>
-
-      {/* Tags */}
-      <select
-        className="border px-3 py-2 rounded-md"
-        onChange={(e) => onTagsChange(e.target.value)}
-      >
-        <option value="">Tags</option>
-        <option value="Premium">Premium</option>
-        <option value="Hot">Hot</option>
-        <option value="Discount">Discount</option>
-      </select>
-
-      {/* Payment Method */}
-      <select
-        className="border px-3 py-2 rounded-md"
-        onChange={(e) => onPaymentChange(e.target.value)}
-      >
-        <option value="">Payment Method</option>
-        <option value="UPI">UPI</option>
-        <option value="Cash">Cash</option>
-        <option value="Card">Card</option>
-      </select>
-
-      {/* Date Range */}
+      {/* DATE RANGE */}
       <input
         type="date"
-        className="border px-3 py-2 rounded-md"
+        className="border rounded px-2 py-2 text-sm"
         onChange={(e) => onDateChange("start", e.target.value)}
       />
 
       <input
         type="date"
-        className="border px-3 py-2 rounded-md"
+        className="border rounded px-2 py-2 text-sm"
         onChange={(e) => onDateChange("end", e.target.value)}
       />
-
     </div>
   );
 }
-
-export default FilterBar;
